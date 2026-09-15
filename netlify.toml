@@ -1,0 +1,21 @@
+# Configurazione esplicita per Netlify.
+#
+# Perché serve: senza questo file, se la "Publish directory" nel pannello
+# Netlify non è impostata a "dist", Netlify pubblica la radice del
+# repository così com'è — cioè l'index.html SORGENTE (quello che punta a
+# /src/main.jsx, JSX non compilato che nessun browser sa eseguire) invece
+# del risultato della build. Risultato: schermo bianco, nessun errore
+# visibile all'utente.
+#
+# Con questo file la build corretta parte sempre, a prescindere da come è
+# configurato il pannello.
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Nessuna route lato client (è una pagina singola con solo ancore #sezione),
+# quindi non serve un redirect SPA a index.html.
