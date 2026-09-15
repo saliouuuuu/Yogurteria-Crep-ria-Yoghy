@@ -1,0 +1,212 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   YOGHY — design tokens
+   Ogni colore è campionato dalle foto reali del locale, non inventato:
+   il blu dell'insegna, il magenta della parete, l'arancio degli sgabelli,
+   il crema del menù, il marmo scuro del bancone, il legno delle doghe.
+------------------------------------------------------------------- */
+@theme {
+  --color-blu:        #1152e0;   /* blu elettrico dell'insegna / del menù */
+  --color-blu-scuro:  #0a1f5c;
+  --color-blu-notte:  #060f33;
+  --color-neon:       #4d84ff;   /* i tubi al neon verticali sulle doghe  */
+  --color-magenta:    #c9187e;   /* la parete della sala                   */
+  --color-magenta-hi: #ff2d9b;
+  --color-arancio:    #f2661b;   /* gli sgabelli Tolix                     */
+  --color-crema:      #fbf6e9;   /* il fondo del menù                      */
+  --color-marmo:      #16151a;   /* il bancone in marmo nero               */
+  --color-legno:      #d8bd94;   /* le doghe in legno chiaro               */
+
+  --font-display: "Bricolage Grotesque", "Arial Black", system-ui, sans-serif;
+  --font-hand: "Caveat", "Segoe Script", cursive;
+
+  --ease-pop: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-crema);
+    color: var(--color-blu-notte);
+    font-family: var(--font-display);
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* Il sito è tutto fuori scala: i titoli devono stringere, non respirare. */
+  h1, h2, h3 {
+    font-weight: 800;
+    letter-spacing: -0.045em;
+    line-height: 0.88;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  img { max-width: 100%; display: block; }
+
+  ::selection { background: var(--color-magenta-hi); color: #fff; }
+
+  /* Scrollbar orizzontali nascoste: le righe "stories" si scorrono col dito. */
+  .no-bar { scrollbar-width: none; -ms-overflow-style: none; }
+  .no-bar::-webkit-scrollbar { display: none; }
+
+  :focus-visible {
+    outline: 3px solid var(--color-arancio);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  /* ---------- PILL PREZZO ------------------------------------------- */
+  /* Copiata dal loro menù reale: il badge prezzo arrotondato. */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .bordo-spesso { border-width: 3px; border-style: solid; }
+
+  /* Testo contornato per i titoloni cinetici */
+  .contorno {
+    -webkit-text-stroke: 2px currentColor;
+    -webkit-text-fill-color: transparent;
+  }
+  @media (min-width: 768px) {
+    .contorno { -webkit-text-stroke-width: 3px; }
+  }
+
+  .ombra-dura { box-shadow: 6px 6px 0 0 var(--color-blu-notte); }
+  .ombra-dura-mag { box-shadow: 6px 6px 0 0 var(--color-magenta); }
+
+}
+
+@layer utilities {
+  /* ---------- LA PARETE A DOGHE ------------------------------------
+     Il motivo visivo che possiede il locale: listelli di legno chiaro
+     con fughe scure. Ricostruito in CSS (zero peso, scala all'infinito)
+     invece che come texture fotografica.                              */
+  .doghe {
+    background-image:
+      repeating-linear-gradient(
+        90deg,
+        #0d0a07 0px,  #0d0a07 3px,
+        #6b5539 3px,  #6b5539 5px,
+        #b09067 5px,  #b09067 13px,
+        #8e7551 13px, #8e7551 16px
+      );
+    background-size: 16px 100%;
+  }
+
+  /* Ombra verticale morbida: fa "curvare" la parete come nelle foto. */
+  .doghe-ombra::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(115% 85% at 50% 6%, transparent 22%, rgba(0,0,0,0.72) 100%),
+      linear-gradient(180deg, rgba(0,0,0,0.5), transparent 22%),
+      linear-gradient(0deg, rgba(0,0,0,0.45), transparent 30%);
+    pointer-events: none;
+  }
+
+  /* ---------- I TUBI AL NEON --------------------------------------- */
+  .tubo {
+    position: absolute;
+    top: var(--t, 8%);
+    height: var(--h, 46%);
+    width: 4px;
+    border-radius: 99px;
+    background: linear-gradient(180deg,
+      rgba(255,255,255,0.35), #eaf1ff 12%, #ffffff 50%, #eaf1ff 88%, rgba(255,255,255,0.35));
+    box-shadow:
+      0 0 3px 1px rgba(214, 231, 255, 0.95),
+      0 0 10px 2px var(--color-neon),
+      0 0 24px 5px rgba(77, 132, 255, 0.6),
+      0 0 52px 10px rgba(17, 82, 224, 0.3);
+  }
+
+  .neon-testo {
+    text-shadow:
+      0 0 6px rgba(255,255,255,0.85),
+      0 0 22px rgba(77,132,255,0.9),
+      0 0 54px rgba(17,82,224,0.7),
+      0 0 110px rgba(17,82,224,0.45);
+  }
+
+  /* Accensione da neon vero: due sbalzi, un tentennamento, poi tiene. */
+  @keyframes accendi {
+    0%   { opacity: 0.05; }
+    6%   { opacity: 0.85; }
+    9%   { opacity: 0.08; }
+    14%  { opacity: 0.9; }
+    17%  { opacity: 0.12; }
+    22%  { opacity: 1; }
+    26%  { opacity: 0.35; }
+    31%  { opacity: 1; }
+    100% { opacity: 1; }
+  }
+  .accendi { animation: accendi 1.5s steps(1, end) both; }
+
+  /* Micro-respiro continuo: il neon non è mai perfettamente fermo. */
+  @keyframes respiro {
+    0%, 100% { opacity: 1; }
+    45%      { opacity: 0.88; }
+    47%      { opacity: 1; }
+  }
+  .respiro { animation: respiro 5.5s ease-in-out 1.6s infinite; }
+
+  /* ---------- MARQUEE ---------------------------------------------- */
+  @keyframes scorri {
+    from { transform: translate3d(0, 0, 0); }
+    to   { transform: translate3d(-50%, 0, 0); }
+  }
+  .scorri { animation: scorri var(--dur, 26s) linear infinite; will-change: transform; }
+  .scorri-rev { animation-direction: reverse; }
+
+  /* ---------- GRANA ------------------------------------------------- */
+  /* Un velo di rumore su tutto: toglie quel look "vettoriale pulito"
+     che fa sembrare i siti generati automaticamente.                   */
+  .grana::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 30;
+    pointer-events: none;
+    opacity: 0.16;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Niente utility .safe-t/.safe-b: avevano la stessa specificità delle
+     utility di padding di Tailwind e a seconda dell'ordine ne annullavano
+     una delle due. Le tacche di sistema si sommano al padding direttamente
+     dove servono, con calc(), così non c'è nulla da sovrascrivere. */
+}
+
+/* Chi ha chiesto meno movimento riceve il sito fermo, non il sito rotto. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .scorri, .accendi, .respiro { animation: none !important; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

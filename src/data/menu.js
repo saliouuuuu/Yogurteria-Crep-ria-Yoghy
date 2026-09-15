@@ -1,0 +1,131 @@
+/* Menù trascritto uno-a-uno dal tabellone del locale (IMG_6344).
+   Prezzi in euro. Se il locale cambia un prezzo si modifica solo qui. */
+
+export const CATEGORIE = [
+  {
+    id: 'yogurt',
+    nome: 'Yogurt',
+    accento: 'soft',
+    claim: 'Scegli il formato, poi riempilo come vuoi.',
+    tema: 'blu',
+    foto: './foto/coppetta-oreo.webp',
+    tipo: 'formati',
+    voci: [
+      { nome: 'Baby', prezzo: '2.00' },
+      { nome: 'Piccolo', prezzo: '3.00' },
+      { nome: 'Medio', prezzo: '3.50' },
+      { nome: 'Grande', prezzo: '5.00' },
+      { nome: 'Maxi', prezzo: '6.00' },
+    ],
+    extra: [{ nome: 'Extra Kinder', prezzo: '+1.00' }],
+  },
+  {
+    id: 'frappe',
+    nome: 'Frappè',
+    accento: 'shakerati',
+    claim: 'Cinque gusti, due taglie. M 4.00 · XL 4.50',
+    tema: 'arancio',
+    foto: './foto/frappe-studio.webp',
+    tipo: 'gusti',
+    taglie: [
+      { nome: 'M', prezzo: '4.00' },
+      { nome: 'XL', prezzo: '4.50' },
+    ],
+    voci: [
+      { nome: 'Nutella' },
+      { nome: 'Caramello salato' },
+      { nome: 'Cioccolato' },
+      { nome: 'Pan Di Stelle' },
+      { nome: 'Cookies proteico' },
+    ],
+    extra: [
+      { nome: 'Extra panna', prezzo: '+0.50' },
+      { nome: 'Latte di soia', prezzo: '+0.50' },
+      { nome: 'Senza lattosio', prezzo: '+0.50' },
+    ],
+  },
+  {
+    id: 'crepes-dolci',
+    nome: 'Crêpes dolci',
+    accento: 'dolci',
+    claim: 'Impasto fatto al momento, piastra rovente.',
+    tema: 'blu',
+    foto: './foto/crepe-neon.webp',
+    tipo: 'prezzi',
+    voci: [
+      { nome: 'Nutella', prezzo: '4.50' },
+      { nome: 'Pistacchio', prezzo: '5.00' },
+      { nome: 'Cioccolato bianco', prezzo: '5.00' },
+      { nome: 'Caramello salato', prezzo: '3.50' },
+    ],
+    extra: [
+      { nome: 'Extra topping', prezzo: '+0.50' },
+      { nome: 'Extra panna', prezzo: '+0.50' },
+    ],
+  },
+  {
+    id: 'crepes-salate',
+    nome: 'Crêpes salate',
+    accento: 'salate',
+    claim: 'Quando lo zucchero non basta.',
+    tema: 'magenta',
+    foto: './foto/bubble-marmo.webp',
+    tipo: 'prezzi',
+    voci: [
+      { nome: 'Cotto e mozzarella', prezzo: '5.50' },
+      { nome: 'Cotto e provola', prezzo: '5.50' },
+      { nome: 'Speck e provola', prezzo: '6.00' },
+      { nome: 'Mortadella e provola', prezzo: '5.00' },
+      { nome: 'Crudo e mozzarella', prezzo: '7.00' },
+      { nome: 'Pizzaiola', prezzo: '4.50' },
+    ],
+  },
+  {
+    id: 'crepes-roll',
+    nome: 'Crêpes Roll',
+    accento: 'roll',
+    claim: 'Crêpe arrotolata attorno allo snack.',
+    tema: 'arancio',
+    foto: './foto/crepe-kinder.webp',
+    tipo: 'prezzi',
+    voci: [
+      { nome: 'Kinder Bueno', prezzo: '6.00' },
+      { nome: 'Happy Hippo', prezzo: '6.00' },
+    ],
+  },
+  {
+    id: 'poke',
+    nome: 'Pokè dolce',
+    accento: 'dolce',
+    claim: 'Te lo costruisci a strati, dalla granella al topping.',
+    tema: 'magenta',
+    foto: './foto/poke-hippo.webp',
+    tipo: 'passaggi',
+    prezzoUnico: '6.50',
+    voci: [
+      { nome: 'Base di granella' },
+      { nome: 'Tagliatelle di crêpes o pancake' },
+      { nome: 'Snack Kinder' },
+      { nome: 'Topping di crema e granella' },
+    ],
+  },
+  {
+    id: 'tiramisu',
+    nome: 'Tiramisù mini',
+    accento: 'mini',
+    claim: 'Piccolo, nel vasetto, sparisce in tre cucchiaiate.',
+    tema: 'blu',
+    foto: './foto/bancone-tiramisu.webp',
+    tipo: 'prezzi',
+    voci: [
+      { nome: 'Savoiardo', prezzo: '2.50' },
+      { nome: 'Pan Di Stelle', prezzo: '3.00' },
+    ],
+  },
+]
+
+export const TEMI = {
+  blu:     { bg: '#1152e0', testo: '#ffffff', pill: '#ffffff', pillTesto: '#1152e0' },
+  magenta: { bg: '#c9187e', testo: '#ffffff', pill: '#ffffff', pillTesto: '#c9187e' },
+  arancio: { bg: '#f2661b', testo: '#16151a', pill: '#16151a', pillTesto: '#ffffff' },
+}
