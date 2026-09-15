@@ -40,6 +40,7 @@ export const LOCALE = {
 /* La galleria è costruita come un feed, non come una griglia:
    ogni scatto ha un peso e una didascalia, come un post. */
 export const GALLERIA = [
+  { src: './foto/frappe-studio.webp',       alt: 'Frappè con panna montata, granella di cioccolato e caramello', didascalia: 'Frappè, M o XL', formato: 'alto' },
   { src: './foto/crepe-neon.webp',          alt: 'Crêpe con crumble sotto i neon blu della sala', didascalia: 'Sotto i neon, sempre', formato: 'alto' },
   { src: './foto/coppetta-oreo.webp',       alt: 'Coppetta di yogurt con granella di biscotto al cioccolato', didascalia: 'Yogurt + Oreo', formato: 'largo' },
   { src: './foto/bubble-marmo.webp',        alt: 'Bubble waffle alla nutella e crêpe sul bancone di marmo', didascalia: 'Doppio giro', formato: 'alto' },

@@ -25,7 +25,7 @@ export const CATEGORIE = [
     accento: 'shakerati',
     claim: 'Cinque gusti, due taglie. M 4.00 · XL 4.50',
     tema: 'arancio',
-    foto: './foto/frappe-blu.webp',
+    foto: './foto/frappe-studio.webp',
     tipo: 'gusti',
     taglie: [
       { nome: 'M', prezzo: '4.00' },

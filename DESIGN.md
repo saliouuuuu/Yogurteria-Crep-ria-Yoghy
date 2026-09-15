@@ -63,9 +63,16 @@ crema con la mascotte e "YOGURTERIA • CRÊPERIA" (esattamente com'è l'insegna
 vera), sotto la parete a doghe con i neon che si accendono, in mezzo il
 logotipo trattato come tubo al neon.
 
-Il **frappè è una foto vera scontornata** (`public/brand/frappe-cutout.webp`,
-estratta con un riempimento per contiguità dallo sfondo blu piatto dello scatto
-originale) e si sovrappone al logotipo. È il trucco che dà profondità senza 3D.
+Il **frappè è una foto vera scontornata** (`public/brand/frappe-cutout.webp`) e
+si sovrappone al logotipo. È il trucco che dà profondità senza 3D.
+
+Lo scatto arriva già con un canale alpha pulito. Due accorgimenti: il PNG
+originale porta l'alone luminoso nei canali RGB dei pixel con alpha 0 (residuo
+di un appiattimento su nero), quindi il ritaglio va fatto sul bbox dell'**alpha**
+e non su quello dei colori, altrimenti ci si porta dietro una cornice di alone
+invisibile; e il braccio è tagliato di netto dal bordo inferiore del fotogramma,
+per cui una maschera sfuma l'ultimo quinto dell'immagine e il braccio sembra
+entrare nell'inquadratura invece di finire di colpo a mezz'aria.
 
 Dettaglio non banale: su desktop il frappè sta **davanti** al logotipo, su
 mobile **dietro** (`z-10 md:z-30`). Davanti, su 390px, si mangiava la "Y" e il
@@ -119,6 +126,12 @@ sezione più curata.
   numerati con prezzo unico (Pokè). Un menù vero non ha una forma sola.
 
 I prezzi in `src/data/menu.js` sono trascritti uno a uno dal tabellone.
+
+---
+
+La stessa fotografia, ricomposta su un alone blu ricostruito (non quello
+appiattito dello scatto: i blu sono quelli del brand), diventa la foto della
+scheda **Frappè** e apre la galleria — `public/foto/frappe-studio.webp`.
 
 ---
 

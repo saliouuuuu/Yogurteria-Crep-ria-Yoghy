@@ -80,12 +80,22 @@ export default function Hero() {
               spazio, quindi passa davanti (md:z-30) e crea la profondità. */}
           <motion.img
             src="./brand/frappe-cutout.webp"
-            alt="Frappè con panna montata e granella di cioccolato"
-            style={{ y: yFrappe }}
+            alt="Frappè con panna montata, caramello e granella di cioccolato"
             initial={{ opacity: 0, scale: 0.86, rotate: 6 }}
             animate={{ opacity: 1, scale: 1, rotate: 0 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.75 }}
-            className="pointer-events-none absolute -right-10 bottom-[-14%] z-10 w-[44%] max-w-[300px] drop-shadow-[0_26px_50px_rgba(0,0,0,0.6)] md:right-[1%] md:bottom-[-16%] md:z-30 md:w-[23%]"
+            // Lo scatto originale taglia il braccio sul bordo inferiore del
+            // fotogramma: lasciato così si vedeva una linea netta a mezz'aria.
+            // Una maschera sfuma l'ultimo quinto, così il braccio sembra
+            // entrare nell'inquadratura invece che finire di colpo.
+            style={{
+              y: yFrappe,
+              WebkitMaskImage:
+                'linear-gradient(to bottom, #000 74%, rgba(0,0,0,0.55) 90%, transparent 99%)',
+              maskImage:
+                'linear-gradient(to bottom, #000 74%, rgba(0,0,0,0.55) 90%, transparent 99%)',
+            }}
+            className="pointer-events-none absolute -right-10 bottom-[-16%] z-10 w-[46%] max-w-[320px] drop-shadow-[0_26px_50px_rgba(0,0,0,0.55)] md:right-[0.5%] md:bottom-[-30%] md:z-30 md:w-[24%]"
           />
 
           <motion.h1
